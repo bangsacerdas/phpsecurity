@@ -1,0 +1,5 @@
+"name","address1","address2","postcode","phone","country","notes"
+"Douglas Adams","123 Park Avenue","Apartment 42","SW1 1AB",7725123456,"UK","OK"
+"Julia Roberts","Wilson Building",10001,"212-555-1212","US",,"off by 1 col"
+"ศิรีจามิกรฌ์","๓๓๑ กิงศรี",,"AB11 6EW",1224567890,"ทาไ","thai characters"
+"J. A. Hacker","Who wants to know?","<script>alert('TEST');</script>",0,"N/A","FR","XSS data"
