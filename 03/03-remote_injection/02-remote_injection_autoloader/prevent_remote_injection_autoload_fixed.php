@@ -1,13 +1,19 @@
 <?php
-// FILE: prevent_remote_injection_include_fixed.php
+// FILE: prevent_remote_injection_autoload_fixed.php
 
 // preventing remote code injection attacks
-// review the comments to see security fixes
+// the vulnerability is obscured by use of an autoloader
+
+/*
+ * NOTE: for demo to work, make sure "include" folder is writeable by PHP
+ */
+
+// include autoloader
+require __DIR__ . '/include/autoloader_fixed.php';
 
 // initialize all variables
-$header 	= '';
-$content 	= 'Home';
-$allowed 	= array('home','add','edit','delete');
+$test = '';
+$allowed = array('home','add','edit','delete');
 
 // all input should be filtered and validated!!!
 $command = (isset($_GET['cmd'])) ? $_GET['cmd'] : 'home';
@@ -23,8 +29,9 @@ if ($key) {
 	$command = 'home';
 }
 
-// build a "safe" filename to include
-include __DIR__ . '/include/' . $command . '.php';
+// build "safe" classname
+$class = 'Test_' . ucfirst(strtolower($command));
+$run = new $class();
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,7 +43,7 @@ include __DIR__ . '/include/' . $command . '.php';
 <h1>prevent_remote_injection_include_fixed.php</h1>
 
 <br />
-<h3><?php echo htmlspecialchars($header); ?></h3>
+<h3><?php echo htmlspecialchars($command); ?></h3>
 <ul>
 <li><a href="?cmd=home">HOME</a></li>
 <li><a href="?cmd=add">ADD</a></li>
@@ -45,13 +52,13 @@ include __DIR__ . '/include/' . $command . '.php';
 </ul>
 
 <br />
-Try these URLs:
+Try this:
 <ul>
-<li>For Linux or Mac: <pre>prevent_remote_injection_include_bad.php?cmd=../../../../../../../../etc/passwd</pre></li>
-<li>For Windows (assuming c:\xampp): <pre>prevent_remote_injection_include_bad.php?cmd=../../properties.ini</pre></li>
+<li>Upload the file <i>info.php</i></li>
+<li>Run this URL: <pre>prevent_remote_injection_autoload_bad.php?cmd=info</pre></li>
 </ul>
 
 <p>
-<?php echo $content; ?>
-< /body>
+<?php echo $run->getTest(); ?>
+</body>
 </html>

