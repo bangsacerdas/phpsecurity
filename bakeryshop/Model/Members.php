@@ -174,7 +174,7 @@ class Members
 	public function confirm($newId, $data)
 	{
 		require_once __DIR__ . '/../PHPMailer/class.phpmailer.php';
-		$address = "info@sweetscomplete.com";
+		$address = "info@bakeryshop.com";
 		$newName = $data['firstname'] . ' ' . $data['lastname'];
 		$mail = new PHPMailer(); // defaults to using php "mail()"
 		$body = 'Welcome to SweetsComplete ' . $newName . '!'

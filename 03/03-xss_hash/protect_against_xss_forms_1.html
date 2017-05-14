@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Protecting Forms Against XSS</title>
+</head>
+<body>
+<h1>protect_against_xss_forms_1.html</h1>
+
+Hacked version of <i>protect_against_xss_forms_1.php</i>
+
+<hr />
+Data is saved: <b>NO</b>
+<hr />
+<form method="post" action="protect_against_xss_forms_1.php">
+<table>
+<tr>
+	<th>ID</th>
+	<!-- NOTE: maxlength -->
+	<td><input type="text" name="id" size=8 maxlength=8 /></td>
+	<td>Current Value: 0</td>
+	<td></td>
+</tr>
+<tr>
+	<th>Name</th>
+	<td><input type="text" name="name" maxlength=128 /></td>
+	<!-- NOTE: user-supplied output is escaped -->
+	<td>Current Value: </td>
+	<td></td>
+</tr>
+<tr>
+	<th>Image</th>
+	<td><input type="text" name="image" maxlength=128 /></td>
+	<td>Current Value: <img src="default.png" /></td>
+	<td>Only "jpg" and "png" images are accepted</td>
+</tr>
+</table>
+<!-- NOTE: $hash does NOT involve user input and should *not* be escaped -->
+<input type="hidden" name="hash" value="59e6a44620576eed25911c79567ff155" />
+<br /><br /><input type="submit" />
+</form>
+</body>
+</html>
