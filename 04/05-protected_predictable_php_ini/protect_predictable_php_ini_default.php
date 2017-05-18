@@ -4,7 +4,7 @@
 
 // uncomment one the lines below and refresh the page:
 //ini_set('session.name', 'sEcReTfRoMiNi');
-//session_name('sEcReTfRoMfUnCtIoN');
+session_name('sEcReTfRoMfUnCtIoN');
 
 session_start();
 

@@ -25,6 +25,7 @@ if ($key) {
 
 // build a "safe" filename to include
 include __DIR__ . '/include/' . $command . '.php';
+var_dump(__DIR__);
 ?>
 <!DOCTYPE html>
 <html>

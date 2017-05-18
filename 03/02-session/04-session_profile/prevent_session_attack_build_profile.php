@@ -53,7 +53,7 @@ if (isset($_POST['login'])) {
 // set up profile filename and dir
 $profileDir  	= __DIR__ . '/profile/';
 $profileFile 	= $profileDir . preg_replace('/[^a-zA-Z]/', '', $name) . '.timer.log';
-
+var_dump(__DIR__);
 // if $_SESSION['name'] is set, build profile and validate
 if (isset($_SESSION['name'])) {
 
@@ -143,7 +143,11 @@ To Try:
 Login Name: <input type="text" name="name" maxlength=128 />
 Password: 	<input type="password" name="pwd" />
 <br /><input type="submit" value="Login" name="login" /><input type="submit" value="Logout" name="logout" />
-<br />Logged In As: <b><?php echo htmlspecialchars($name); ?></b>
+<br />Logged In As: <b><?php
+
+            echo htmlspecialchars($name);
+
+        ?></b>
 </form>
 
 <?php phpinfo(INFO_VARIABLES); ?>
